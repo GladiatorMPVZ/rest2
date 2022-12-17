@@ -41,31 +41,4 @@ public class ProductController {
     public Product updateStudent(@RequestBody Product product) {
         return productService.saveOrUpdateProduct(product);
     }
-
-    @EventListener(ApplicationReadyEvent.class)
-    public void create() {
-        productService.saveOrUpdateProduct(createNewProduct("chocolate", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("chop", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("veal", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("whisky", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("yoghurt", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("chili", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("orange", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("apricot", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("apricot", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("bread", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("butter", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("condiment", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("currant", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("eel", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("croissant", 100L));
-        productService.saveOrUpdateProduct(createNewProduct("garlic", 100L));
-    }
-
-    private Product createNewProduct(String title, Long price) {
-        Product product = new Product();
-        product.setTitle(title);
-        product.setPrice(price);
-        return product;
-    }
 }
