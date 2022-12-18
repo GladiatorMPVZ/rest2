@@ -17,9 +17,15 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProduct() {
-        return productService.findAll();
+    public String getAllProducts() {
+        return "show all products and change it";
     }
+
+
+//    @GetMapping
+//    public List<Product> getAllProduct() {
+//        return productService.findAll();
+//    }
 
     @GetMapping("/{id}")
     public Product getAllProduct(@PathVariable Long id) {
