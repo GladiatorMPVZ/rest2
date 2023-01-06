@@ -1,4 +1,4 @@
-package rest.rest2.Jwt;
+package rest.rest2.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtRequest {
-    private String username;
-    private String password;
+public class StringResponse {
+    private String value;
 }

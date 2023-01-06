@@ -1,34 +1,34 @@
 package rest.rest2.Service;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import rest.rest2.Cart;
 import rest.rest2.Entity.Product;
+import rest.rest2.model.Cart;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-@Data
-@Slf4j
+import javax.annotation.PostConstruct;
 @Service
+@RequiredArgsConstructor
 public class CartService {
-
     private final ProductService productService;
-
-    public void addProduct(Cart cart, Product product, Integer quantity) {
-        cart.getCartMap().put(product, quantity);
+    private Cart tempCart;
+    @PostConstruct
+    public void init() {
+        tempCart = new Cart();
     }
-
-    public void addProductById(Cart cart, Long id, Integer quantity) {
-        Product product = productService.findProductById(id);
-        this.addProduct(cart, product, quantity);
+    public Cart getCurrentCart() {
+        return tempCart;
     }
-
-    public List<Product> showAll(Cart cart) {
-        List<Product> cartList = new ArrayList<>(cart.getCartMap().keySet());
-        return cartList;
+    public void add(Long productId) {
+        Product product = productService.findProductById(productId);
+        tempCart.add(product);
     }
-
+    public void clearCart() {
+        tempCart.clearCart();
+    }
+    public void deleteFromCart(Long productId) {
+        tempCart.delete(productId);
+    }
+    public void changeQuantity(Long productId, Integer delta) {
+        tempCart.changeQuantity(productId, delta);
+    }
 }

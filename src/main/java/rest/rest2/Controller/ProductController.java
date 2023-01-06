@@ -1,13 +1,9 @@
 package rest.rest2.Controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 import rest.rest2.Entity.Product;
 import rest.rest2.Service.ProductService;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -20,12 +16,6 @@ public class ProductController {
     public String getAllProducts() {
         return "show all products and change it";
     }
-
-
-//    @GetMapping
-//    public List<Product> getAllProduct() {
-//        return productService.findAll();
-//    }
 
     @GetMapping("/{id}")
     public Product getAllProduct(@PathVariable Long id) {

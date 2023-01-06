@@ -6,7 +6,6 @@ import rest.rest2.Entity.Product;
 import rest.rest2.Repository.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service

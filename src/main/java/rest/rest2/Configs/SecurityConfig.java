@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
@@ -17,16 +16,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import rest.rest2.Jwt.JwtRequestFilter;
-import rest.rest2.Service.UserService;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Slf4j
 @Configuration
 public class SecurityConfig{
-
-    private final UserService userService;
     private final JwtRequestFilter filter;
 
     @Bean
@@ -42,6 +37,7 @@ public class SecurityConfig{
                 .requestMatchers("/products").hasAnyRole("admin", "manager")
                 .requestMatchers("/users").hasAnyRole("admin")
                 .requestMatchers("/users/edit").hasAnyRole("super_admin")
+                .requestMatchers("/auth_check").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
